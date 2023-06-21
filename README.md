@@ -1,1 +1,5 @@
-# theme-party
+# Theme Party
+
+```
+yarn add theme-party
+```
