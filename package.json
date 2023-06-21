@@ -1,4 +1,10 @@
 {
   "name": "theme-party",
-  "packageManager": "yarn@3.6.0"
+  "packageManager": "yarn@3.6.0",
+  "devDependencies": {
+    "@types/react": "^18.2.13",
+    "@types/react-dom": "^18.2.6",
+    "react": "^18.2.0",
+    "typescript": "^5.1.3"
+  }
 }
