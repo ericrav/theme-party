@@ -35,8 +35,6 @@ function makeProxy<T extends ThemeObject>(theme: T): T {
   return new Proxy(theme, handler);
 }
 
-export type ThemeOfParty<T> = T extends ThemeParty<infer Theme> ? Theme : never;
-
 export class ThemeParty<Theme extends {}> {
   public constructor(private theme: Theme) {}
 
