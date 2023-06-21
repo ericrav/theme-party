@@ -3,6 +3,9 @@
   "author": "Eric Rabinowitz",
   "version": "0.0.0",
   "license": "MIT",
+  "dependencies": {
+    "lodash": "^4.0.0"
+  },
   "peerDependencies": {
     "react": ">=16.8"
   },
@@ -11,6 +14,12 @@
   "module": "dist/esm/index.js",
   "types": "dist/index.d.ts",
   "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
   "files": [
     "dist"
   ],
@@ -22,6 +31,7 @@
     "@rollup/plugin-commonjs": "^25.0.2",
     "@rollup/plugin-node-resolve": "^15.1.0",
     "@rollup/plugin-typescript": "^11.1.1",
+    "@types/lodash": "^4.14.195",
     "@types/node": "^20.3.1",
     "@types/react": "^18.2.13",
     "@types/react-dom": "^18.2.6",
