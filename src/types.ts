@@ -17,6 +17,8 @@ export interface UserTheme {
  */
 export type ThemeOfParty<T> = T extends ThemeParty<infer Theme> ? Theme : never;
 
-export type DefaultUserTheme = unknown extends UserTheme['default']
+export type DefaultThemeParty = unknown extends UserTheme['default']
   ? never
   : UserTheme['default'];
+
+export type DefaultTheme = ThemeOfParty<DefaultThemeParty>;
