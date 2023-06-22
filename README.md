@@ -1,3 +1,5 @@
+![Theme Party](docs/public/logo.png)
+
 # Theme Party
 
 ```
