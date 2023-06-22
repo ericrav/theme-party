@@ -3,6 +3,7 @@
   "author": "Eric Rabinowitz",
   "version": "0.0.1",
   "license": "MIT",
+  "repository": "github:ericrav/theme-party",
   "dependencies": {
     "lodash": "^4.0.0"
   },
