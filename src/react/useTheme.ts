@@ -6,5 +6,5 @@ export function useTheme<ThemeParty = DefaultThemeParty>(): ThemeOfParty<ThemePa
   const themeParty = useContext(themePartyContext);
   if (!themeParty)
     throw new Error('useTheme() must be used within a ThemeProvider');
-  return themeParty.getTheme();
+  return themeParty.getTheme() as ThemeOfParty<ThemeParty>;
 }
