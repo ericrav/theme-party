@@ -1,6 +1,4 @@
 import type { ThemeParty } from './ThemeParty';
-import type { ResolvedTheme } from './ThemeParty.types';
-
 
 /**
  * Allows user to define type of their custom theme object.
@@ -17,7 +15,7 @@ export interface UserTheme {
 /**
  * Extract type of theme object from ThemeParty instance.
  */
-export type ThemeOfParty<T> = T extends ThemeParty<infer Theme> ? ResolvedTheme<Theme> : never;
+export type ThemeOfParty<T> = T extends ThemeParty<infer Theme> ? Theme : never;
 
 export type DefaultThemeParty = unknown extends UserTheme['default']
   ? never

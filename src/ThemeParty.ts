@@ -3,18 +3,18 @@ import merge from 'lodash/merge';
 
 import { makeThemeProxy } from './makeThemeProxy';
 import { CostumedComponent } from './react/CostumedComponent';
-import { ThemeObject, ProxyObject, UnwrappedTheme, DeepPartial, ResolvedTheme } from './ThemeParty.types';
+import { ThemeObject, DeepPartial } from './ThemeParty.types';
 
-export class ThemeParty<T extends ThemeObject<ProxyObject>> {
-  public constructor(private theme: T) {}
+export class ThemeParty<T extends {}> {
+  public constructor(private theme: ThemeObject<T>) {}
 
-  #theme!: ResolvedTheme<T>;
+  #theme!: T;
 
   #parent: ThemeParty<any> | null = null;
 
   #components = new WeakMap<CostumedComponent<any>, React.ComponentType<any>>();
 
-  public getTheme(): ResolvedTheme<T> {
+  public getTheme(): T {
     this.#theme ??= makeThemeProxy(this.theme);
     return this.#theme;
   }
@@ -35,11 +35,20 @@ export class ThemeParty<T extends ThemeObject<ProxyObject>> {
 
   /**
    * Return a new ThemeParty with the given theme overrides.
+   * `extend` is an alias of `createTheme` but will let you add new properties to the type of the theme.
    */
-  public extend(overrides: DeepPartial<UnwrappedTheme<T>>): ThemeParty<T>;
-  public extend<O extends ThemeObject<UnwrappedTheme<T>>>(overrides: O): ThemeParty<T & O>;
-  public extend<O extends ThemeObject<ProxyObject & UnwrappedTheme<T>>>(overrides: O) {
-    const party = new ThemeParty<O & T>(merge({}, this.theme, overrides));
+  public extend<O extends {}>(overrides: ThemeObject<T, O>) {
+    const party = new ThemeParty<O & T>(merge({}, this.theme, overrides) as ThemeObject<T & O>);
+    party.#parent = this;
+    return party;
+  }
+
+  /**
+   * Return a new ThemeParty with the given theme overrides.
+   * `createTheme` is an alias of `extend` but will have TypeScript check properties match the type of the base theme.
+   */
+  public createTheme<O extends DeepPartial<T>>(overrides: ThemeObject<T, O>) {
+    const party = new ThemeParty<T>(merge({}, this.theme, overrides));
     party.#parent = this;
     return party;
   }
