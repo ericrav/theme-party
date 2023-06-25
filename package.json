@@ -26,7 +26,8 @@
   ],
   "scripts": {
     "dev": "rollup -c -w",
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "test": "jest"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^25.0.2",
