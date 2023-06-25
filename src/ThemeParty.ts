@@ -47,7 +47,7 @@ export class ThemeParty<T extends {}> {
    * Return a new ThemeParty with the given theme overrides.
    * `createTheme` is an alias of `extend` but will have TypeScript check properties match the type of the base theme.
    */
-  public createTheme<O extends DeepPartial<T>>(overrides: ThemeConfig<ThemeExtract<T>, O>) {
+  public createTheme<O extends DeepPartial<ThemeExtract<T>>>(overrides: ThemeConfig<ThemeExtract<T>, O>) {
     const party = new ThemeParty<T>(merge({}, this.theme, overrides));
     party.#parent = this;
     return party;
