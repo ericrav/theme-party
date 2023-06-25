@@ -43,6 +43,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["rollup-plugin-dts", "virtual:6e58e94b229664262f1cae4f8150d57dbe99be6adf136ad62f80e6147bce276ce941c2e9fd1332087419b049c535d5b5fa059b3ad3b3a84437bc632d11cf38c4#npm:5.3.0"],\
             ["ts-jest", "virtual:6e58e94b229664262f1cae4f8150d57dbe99be6adf136ad62f80e6147bce276ce941c2e9fd1332087419b049c535d5b5fa059b3ad3b3a84437bc632d11cf38c4#npm:29.1.0"],\
             ["ts-node", "virtual:6e58e94b229664262f1cae4f8150d57dbe99be6adf136ad62f80e6147bce276ce941c2e9fd1332087419b049c535d5b5fa059b3ad3b3a84437bc632d11cf38c4#npm:10.9.1"],\
+            ["tsafe", "npm:1.6.4"],\
             ["tslib", "npm:2.5.3"],\
             ["typescript", "patch:typescript@npm%3A5.1.3#~builtin<compat/typescript>::version=5.1.3&hash=5da071"]\
           ],\
@@ -4811,6 +4812,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["rollup-plugin-dts", "virtual:6e58e94b229664262f1cae4f8150d57dbe99be6adf136ad62f80e6147bce276ce941c2e9fd1332087419b049c535d5b5fa059b3ad3b3a84437bc632d11cf38c4#npm:5.3.0"],\
             ["ts-jest", "virtual:6e58e94b229664262f1cae4f8150d57dbe99be6adf136ad62f80e6147bce276ce941c2e9fd1332087419b049c535d5b5fa059b3ad3b3a84437bc632d11cf38c4#npm:29.1.0"],\
             ["ts-node", "virtual:6e58e94b229664262f1cae4f8150d57dbe99be6adf136ad62f80e6147bce276ce941c2e9fd1332087419b049c535d5b5fa059b3ad3b3a84437bc632d11cf38c4#npm:10.9.1"],\
+            ["tsafe", "npm:1.6.4"],\
             ["tslib", "npm:2.5.3"],\
             ["typescript", "patch:typescript@npm%3A5.1.3#~builtin<compat/typescript>::version=5.1.3&hash=5da071"]\
           ],\
@@ -4936,6 +4938,15 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             "@types/swc__wasm",\
             "@types/typescript",\
             "typescript"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
+      ["tsafe", [\
+        ["npm:1.6.4", {\
+          "packageLocation": "./.yarn/cache/tsafe-npm-1.6.4-bb7547af5b-9a61944422.zip/node_modules/tsafe/",\
+          "packageDependencies": [\
+            ["tsafe", "npm:1.6.4"]\
           ],\
           "linkType": "HARD"\
         }]\

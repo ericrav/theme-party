@@ -1,3 +1,5 @@
+import { assert, Equals } from 'tsafe';
+
 import { ThemeParty } from '../ThemeParty';
 
 const themeParty = new ThemeParty({
@@ -78,11 +80,10 @@ test('create theme', () => {
       blue: 'blue',
       green: 'green',
     },
-  })
-  .extend({
+  }).extend({
     colors: {
       primary: (t) => t.colors.red,
-    }
+    },
   });
 
   const blueTheme = themeParty.createTheme({
@@ -98,18 +99,29 @@ test('create theme', () => {
   });
 
   {
-    const theme = themeParty.getTheme();
-    expect(theme.colors.primary).toBe('red');
+    const {
+      colors: { primary },
+    } = themeParty.getTheme();
+
+    assert<Equals<typeof primary, string>>();
+    expect(primary).toBe('red');
   }
 
   {
-    const theme = blueTheme.getTheme();
-    expect(theme.colors.primary).toBe('blue');
+    const {
+      colors: { primary },
+    } = blueTheme.getTheme();
+
+    assert<Equals<typeof primary, string>>();
+    expect(primary).toBe('blue');
   }
 
   {
-    const theme = greenTheme.getTheme();
-    expect(theme.colors.primary).toBe('green');
-  }
+    const {
+      colors: { primary },
+    } = greenTheme.getTheme();
 
+    assert<Equals<typeof primary, string>>();
+    expect(primary).toBe('green');
+  }
 });
