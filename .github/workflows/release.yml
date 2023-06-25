@@ -23,6 +23,11 @@ jobs:
       - run: yarn version apply
       # Commit all changed files back to the repository
       - uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: "[ci skip] apply version"
+          commit_options: '--no-verify --signoff'
+          file_pattern: 'package.json .yarn/versions/*'
+
       - run: yarn build
       - run: yarn npm publish
         env:
