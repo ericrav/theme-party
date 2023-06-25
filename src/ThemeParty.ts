@@ -5,7 +5,7 @@ import { makeThemeProxy } from './makeThemeProxy';
 import { CostumedComponent } from './react/CostumedComponent';
 import { ThemeConfig, DeepPartial, ThemeExtract } from './ThemeParty.types';
 
-export class ThemeParty<T extends {}> {
+export class ThemeParty<T extends {} = {}> {
   public constructor(private theme: ThemeConfig<T>) {}
 
   #theme!: ThemeExtract<T>;
