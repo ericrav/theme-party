@@ -1,12 +1,16 @@
-name: Test
+name: Versioning
 on: [push]
 
 jobs:
   build:
-    name: Test
+    name: Version Check
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      # Also check out main branch, so yarn can compare
+      - uses: actions/checkout@v3
+        with:
+          ref: main
 
       - name: Set Node.js 16.x
         uses: actions/setup-node@v3
@@ -14,4 +18,4 @@ jobs:
           node-version: 16.x
 
       - run: yarn
-      - run: yarn test
+      - run: yarn version check
