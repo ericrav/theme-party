@@ -1,6 +1,6 @@
-import { ThemeObject } from "./ThemeParty.types";
+import { ThemeConfig, ThemeExtract } from "./ThemeParty.types";
 
-export function makeThemeProxy<T extends {}>(theme: ThemeObject<T>): T {
+export function makeThemeProxy<T extends {}>(theme: ThemeConfig<T>): ThemeExtract<T> {
   const handler: ProxyHandler<any> = {
     get(target, prop) {
       const value = Reflect.get(target, prop);

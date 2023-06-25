@@ -3,18 +3,18 @@ import merge from 'lodash/merge';
 
 import { makeThemeProxy } from './makeThemeProxy';
 import { CostumedComponent } from './react/CostumedComponent';
-import { ThemeObject, DeepPartial } from './ThemeParty.types';
+import { ThemeConfig, DeepPartial, ThemeExtract } from './ThemeParty.types';
 
 export class ThemeParty<T extends {}> {
-  public constructor(private theme: ThemeObject<T>) {}
+  public constructor(private theme: ThemeConfig<T>) {}
 
-  #theme!: T;
+  #theme!: ThemeExtract<T>;
 
   #parent: ThemeParty<any> | null = null;
 
   #components = new WeakMap<CostumedComponent<any>, React.ComponentType<any>>();
 
-  public getTheme(): T {
+  public getTheme(): ThemeExtract<T> {
     this.#theme ??= makeThemeProxy(this.theme);
     return this.#theme;
   }
@@ -37,8 +37,8 @@ export class ThemeParty<T extends {}> {
    * Return a new ThemeParty with the given theme overrides.
    * `extend` is an alias of `createTheme` but will let you add new properties to the type of the theme.
    */
-  public extend<O extends {}>(overrides: ThemeObject<T, O>) {
-    const party = new ThemeParty<O & T>(merge({}, this.theme, overrides) as ThemeObject<T & O>);
+  public extend<O extends {}>(overrides: ThemeConfig<ThemeExtract<T>, O>) {
+    const party = new ThemeParty<O & ThemeExtract<T>>(merge({}, this.theme, overrides) as ThemeConfig<ThemeExtract<T> & O>);
     party.#parent = this;
     return party;
   }
@@ -47,7 +47,7 @@ export class ThemeParty<T extends {}> {
    * Return a new ThemeParty with the given theme overrides.
    * `createTheme` is an alias of `extend` but will have TypeScript check properties match the type of the base theme.
    */
-  public createTheme<O extends DeepPartial<T>>(overrides: ThemeObject<T, O>) {
+  public createTheme<O extends DeepPartial<T>>(overrides: ThemeConfig<ThemeExtract<T>, O>) {
     const party = new ThemeParty<T>(merge({}, this.theme, overrides));
     party.#parent = this;
     return party;
