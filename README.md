@@ -2,6 +2,11 @@
 
 # Theme Party
 
+<a href="https://www.npmjs.com/package/theme-party">
+  <img src="https://img.shields.io/npm/v/theme-party">
+</a>
+
+
 Theme Party is an unstyled & unopinionated method of providing an interchangeable theme to React apps.
 You can structure your theme objects however you like, and use any styling engine. Themes can override primitive values (such as colors & fonts)
 as well as swap out entire components for more complex layout differences between themes.
