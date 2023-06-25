@@ -7,6 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+      # Also check out main branch, so yarn can compare
+      - uses: actions/checkout@v3
+        with:
+          ref: main
 
       - name: Set Node.js 16.x
         uses: actions/setup-node@v3
