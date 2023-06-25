@@ -14,9 +14,11 @@ export class ThemeParty<T extends {}> {
 
   #components = new WeakMap<CostumedComponent<any>, React.ComponentType<any>>();
 
-  public getTheme(): ThemeExtract<T> {
+  public getTheme(): ThemeExtract<T>;
+  public getTheme<R>(selector: ((theme: ThemeExtract<T>) => R)): R;
+  public getTheme<R>(selector?: ((theme: ThemeExtract<T>) => R)): ThemeExtract<T> | R {
     this.#theme ??= makeThemeProxy(this.theme);
-    return this.#theme;
+    return selector ? selector(this.#theme) : this.#theme;
   }
 
   public getComponent<P>(

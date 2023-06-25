@@ -125,3 +125,39 @@ test('create theme', () => {
     expect(primary).toBe('green');
   }
 });
+
+test('getTheme with selector', () => {
+  const themeParty = new ThemeParty({
+    colors: {
+      red: 'red',
+      blue: 'blue',
+    },
+    spacing: {
+      sm: 4,
+      md: 8,
+      lg: 16,
+    },
+  }).extend({
+    colors: {
+      primary: (t) => t.colors.red,
+    },
+  });
+
+  const colors = themeParty.getTheme((t) => t.colors);
+  const spacing = themeParty.getTheme((t) => t.spacing);
+
+  assert<Equals<typeof colors, { red: string; blue: string; primary: string }>>();
+  assert<Equals<typeof spacing, { sm: number; md: number; lg: number }>>();
+
+  expect(colors).toEqual({
+    red: 'red',
+    primary: 'red',
+    blue: 'blue',
+  });
+
+  expect(spacing).toEqual({
+    sm: 4,
+    md: 8,
+    lg: 16,
+  });
+});
