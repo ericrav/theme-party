@@ -157,3 +157,14 @@ function Page() {
   );
 }
 ```
+
+## Releasing
+
+In pull request branch, run
+
+```
+yarn version [patch|minor|major] --deferred
+```
+
+and commit yarn version file. When PR is merged, the package version will
+be updated accordingly. See [Yarn Release Workflow](https://yarnpkg.com/features/release-workflow) for more details.
