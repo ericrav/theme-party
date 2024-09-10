@@ -9,7 +9,7 @@ export function makeThemeProxy<T extends {}>(theme: ThemeConfig<T>): ThemeExtrac
         return value(new Proxy(theme, handler));
       }
 
-      if (typeof value === "object" && value !== null) {
+      if (typeof value === "object" && value !== null && !Array.isArray(value)) {
         return new Proxy(value, handler);
       }
 
