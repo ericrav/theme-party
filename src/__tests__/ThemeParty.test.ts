@@ -1,4 +1,5 @@
 import { assert, Equals } from 'tsafe';
+import util from 'util';
 
 import { ThemeParty } from '../ThemeParty';
 
@@ -161,3 +162,29 @@ test('getTheme with selector', () => {
     lg: 16,
   });
 });
+
+test('proxy values', () => {
+  const themeParty = new ThemeParty({
+    string: 'string',
+    number: 1,
+    boolean: true,
+    object: { key: 'value' },
+    array: [1, 2, 3],
+    function: () => ({ function: true }),
+  });
+
+  const theme = themeParty.getTheme();
+  expect(util.types.isProxy(theme)).toBe(true);
+  expect(theme.string).toBe('string');
+  expect(util.types.isProxy(theme.string)).toBe(false);
+  expect(theme.number).toBe(1);
+  expect(util.types.isProxy(theme.number)).toBe(false);
+  expect(theme.boolean).toBe(true);
+  expect(util.types.isProxy(theme.boolean)).toBe(false);
+  expect(theme.object).toEqual({ key: 'value' });
+  expect(util.types.isProxy(theme.object)).toBe(true);
+  expect(theme.array).toEqual([1, 2, 3]);
+  expect(util.types.isProxy(theme.array)).toBe(false);
+  expect(theme.function).toEqual({ function: true });
+  expect(util.types.isProxy(theme.function)).toBe(false);
+})
