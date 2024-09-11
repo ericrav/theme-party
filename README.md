@@ -163,9 +163,9 @@ function Page() {
 Sometimes, you might want to override a single theme value, while inheriting the rest of the current theme.
 
 ```tsx
-import { ThemeOverride } from 'theme-party';
+import { ThemeOverride, ThemePartyConfig } from 'theme-party';
 
-const override = { color: { link: 'blue' } };
+const override: ThemePartyConfig = { color: { link: 'blue' } };
 function Component() {
   return (
     <ThemeOverride value={override}>
