@@ -1,5 +1,5 @@
 import type { ThemeParty } from './ThemeParty';
-import { ThemeExtract } from './ThemeParty.types';
+import { DeepPartial, ThemeConfig, ThemeExtract } from './ThemeParty.types';
 
 /**
  * Allows user to define type of their custom theme object.
@@ -23,3 +23,5 @@ export type DefaultThemeParty = unknown extends UserTheme['default']
   : UserTheme['default'];
 
 export type DefaultTheme = ThemeOfParty<DefaultThemeParty>;
+
+export type ThemePartyConfig<T extends {} = DefaultTheme> = ThemeConfig<ThemeExtract<T>, DeepPartial<ThemeExtract<T>>>;

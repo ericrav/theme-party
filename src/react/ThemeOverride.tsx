@@ -1,11 +1,10 @@
 import { useContext, useMemo } from 'react';
-import { DeepPartial, ThemeConfig, ThemeExtract } from '../ThemeParty.types';
-import { DefaultTheme } from '../types';
+import { DefaultTheme, ThemePartyConfig } from '../types';
 import { themePartyContext } from './context';
 
 export interface ThemeOverrideProps<T extends {}> {
   /** Override values of current theme. Object should be stable across renders */
-  value: ThemeConfig<ThemeExtract<T>, DeepPartial<ThemeExtract<T>>>;
+  value: ThemePartyConfig<T>;
   children: React.ReactNode;
 }
 
