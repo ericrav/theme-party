@@ -122,7 +122,7 @@ export function Link({ children }) {
 
 ```
 
-### Override components
+### Replace components ("costuming")
 
 Create a "costumed" component containing your default markup.
 
@@ -158,7 +158,30 @@ function Page() {
 }
 ```
 
-## Releasing
+### Theme overrides
+
+Sometimes, you might want to override a single theme value, while inheriting the rest of the current theme.
+
+```tsx
+import { ThemeOverride, ThemePartyConfig } from 'theme-party';
+
+const override: ThemePartyConfig = { color: { link: 'blue' } };
+function Component() {
+  return (
+    <ThemeOverride value={override}>
+      <Link>Click me</Link>
+    </ThemeOverride>
+  );
+}
+```
+
+This creates a temporary theme that preserves the rest of the values of the currently selected theme.
+
+Note: the object passed to value must be stable across renders. Either use a constant or memoize the object.
+
+## Contributing
+
+### Releasing
 
 In pull request branch, run
 
