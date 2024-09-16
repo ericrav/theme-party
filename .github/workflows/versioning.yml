@@ -1,5 +1,10 @@
 name: Versioning
-on: [push]
+on:
+  workflow_run:
+    workflows: ["Test"]
+    branches: [main]
+    types:
+      - completed
 
 jobs:
   build:
