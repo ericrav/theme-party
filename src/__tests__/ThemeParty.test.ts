@@ -138,6 +138,7 @@ test('getTheme with selector', () => {
       md: 8,
       lg: 16,
     },
+    showLogo: true,
   }).extend({
     colors: {
       primary: (t) => t.colors.red,
@@ -146,9 +147,12 @@ test('getTheme with selector', () => {
 
   const colors = themeParty.getTheme((t) => t.colors);
   const spacing = themeParty.getTheme((t) => t.spacing);
+  const primary = themeParty.getTheme((t) => t.colors.primary);
+  const showLogo = themeParty.getTheme((t) => t.showLogo);
 
   assert<Equals<typeof colors, { red: string; blue: string; primary: string }>>();
   assert<Equals<typeof spacing, { sm: number; md: number; lg: number }>>();
+  assert<Equals<typeof showLogo, boolean>>();
 
   expect(colors).toEqual({
     red: 'red',
@@ -161,6 +165,10 @@ test('getTheme with selector', () => {
     md: 8,
     lg: 16,
   });
+
+  expect(primary).toBe('red');
+
+  expect(showLogo).toBe(true);
 });
 
 test('proxy values', () => {
